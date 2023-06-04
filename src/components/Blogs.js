@@ -8,32 +8,50 @@ const Blogs = () => {
     fetchBlogPosts();
   }, []);
 
-  const fetchBlogPosts = async () => {
-    const response = await fetch('data.txt');
-    const data = await response.text();
-  
-    if (!data) {
-      // If data.txt is empty, set an empty array for blogPosts
-      setBlogPosts([]);
-      return;
-    }
-  
-    const posts = data.split('\n\n').map((post, index) => {
-      const lines = post.trim().split('\n');
-      const title = lines[0].replace('Title: ', '');
-      const content = lines[1].replace('Content: ', '');
-  
-      return { id: index, title, content };
+  const importFilenames = () => {
+    return new Promise((resolve, reject) => {
+      try {
+        const context = require.context('../../public/data', false, /\.md$/);
+        const filenames = context.keys().map((key) => key.replace('./', ''));
+        resolve(filenames);
+      } catch (error) {
+        reject(error);
+      }
     });
-  
-    setBlogPosts(posts);
+  };
+
+  const fetchBlogPosts = async () => {
+    try {
+      const fileNames = await importFilenames();
+
+      if (!fileNames || fileNames.length === 0) {
+        setBlogPosts([]);
+        return;
+      }
+
+      const posts = await Promise.all(
+        fileNames.map(async (fileName, index) => {
+          const response = await fetch(`data/${fileName}`);
+          const content = await response.text();
+          return { id: index, title: fileName.replace('.md', ''), content };
+        })
+      );
+
+      setBlogPosts(posts);
+    } catch (error) {
+      console.error('Error fetching blog posts:', error);
+    }
   };
 
   return (
     <div>
-      {blogPosts.map((post) => (
-        <BlogPost title={post.title} content={post.content} />
-      ))}
+      {blogPosts.length > 0 ? (
+        blogPosts.map((post) => (
+          <BlogPost title={post.title} content={post.content} />
+        ))
+      ) : (
+        <div className="blog-post">No blog posts found.</div>
+      )}
     </div>
   );
 };
