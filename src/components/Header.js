@@ -1,14 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
+  const navigationItems = [
+    { label: 'Home', path: '/' },
+    { label: 'About', path: '/about' },
+    { label: 'Contact', path: '/contact' },
+  ];
+
   return (
-    <header>
-      <h1>My Blog</h1>
+    <header className="header">
+      <h1>Daniel's Blog</h1>
       <nav>
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
+          {navigationItems.map((item, index) => (
+            <li key={index}>
+              <Link to={item.path}>{item.label}</Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>

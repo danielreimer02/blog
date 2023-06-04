@@ -5,26 +5,31 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    color: #444;
+    font-family: "Georgia", serif;
   }
   
   /* Body styles */
   body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
-    color: #333;
+    font-family: "Georgia", serif;
+    background-color: #e5e7e9;
+    color: #444;
     line-height: 1.5;
   }
   
   /* Header styles */
   header {
-    background-color: #222;
-    color: #fff;
+    background-color: #e5e7e9;
+    color: #444;
     padding: 20px;
+    border-bottom: 1px solid #c6c8ca;
   }
   
   h1 {
     font-size: 24px;
     font-weight: bold;
+    color: #f9f7f5;
+    color: #444;
   }
   
   nav ul {
@@ -42,37 +47,61 @@
     display: flex;
     justify-content: space-between;
     padding: 20px;
+    color: #444;
   }
-  
-  .blog-post {
-    width: 70%;
-    background-color: #fff;
+
+  .about {
+    flex: 0 0 70%;
+    background-color: #f9f7f5;
     padding: 20px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #444;
+  }
+
+  .contact {
+    flex: 0 0 70%;
+    background-color: #f9f7f5;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #444;
+  }
+  
+  .blog-post {
+    flex: 0 0 70%;
+    background-color: #f9f7f5;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #444;
   }
   
   .blog-post h2 {
     font-size: 24px;
     margin-bottom: 10px;
+    color: #444;
   }
   
   .blog-post p {
     font-size: 16px;
     margin-bottom: 20px;
+    color: #444;
   }
   
   aside {
-    width: 28%;
-    background-color: #fff;
+    flex: 0 0 28%;
+    background-color: #e5e7e9;
     padding: 20px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #444;
   }
   
   aside h2 {
     font-size: 20px;
     margin-bottom: 10px;
+    color: #444;
   }
   
   aside ul {
@@ -81,12 +110,14 @@
   
   aside li {
     margin-bottom: 5px;
+    color: #444;
   }
   
   /* Footer styles */
   footer {
-    background-color: #222;
-    color: #fff;
+    background-color: #e5e7e9;
+    color: #444;
     padding: 20px;
+    border-top: 1px solid #c6c8ca;
     text-align: center;
   }
