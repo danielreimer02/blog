@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: danielreimer02/blog
+  name: git-gateway
   branch: main
 
 collections:
