@@ -8,36 +8,47 @@ const Blogs = () => {
     fetchBlogPosts();
   }, []);
 
-  const importFilenames = () => {
-    return new Promise((resolve, reject) => {
-      try {
-        const context = require.context('../../public/data', false, /\.md$/);
-        const filenames = context.keys().map((key) => key.replace('./', ''));
-        resolve(filenames);
-      } catch (error) {
-        reject(error);
-      }
-    });
+  const importFolderNames = () => {
+    try {
+      const context = require.context(
+        '../../public/data',
+        true,
+        /\/ref\.md$/
+      );
+      const folderNames = context.keys().map((key) => {
+        // Extract the folder name from the full path
+        const folderName = key.split('/')[1];
+        return folderName;
+      });
+      return folderNames;
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
   };
 
   const fetchBlogPosts = async () => {
     try {
-      const fileNames = await importFilenames();
+      const folderNames = await importFolderNames();
 
-      if (!fileNames || fileNames.length === 0) {
+      if (!folderNames || folderNames.length === 0) {
         setBlogPosts([]);
         return;
       }
 
       const posts = await Promise.all(
-        fileNames.map(async (fileName, index) => {
-          const response = await fetch(`data/${fileName}`);
+        folderNames.map(async (folderName, index) => {
+          const response = await fetch(`data/${folderName}/${folderName}.md`);
           const content = await response.text();
-          return { id: index, title: fileName.replace('.md', ''), content };
+          const refresponse = await fetch(`data/${folderName}/ref.md`);
+          const refcontent = await refresponse.text();
+          console.log(`Fetched content and refcontent for ${folderName}:`, refcontent);
+          return { id: index, title: folderName, content: content, refcontent: refcontent };
         })
       );
 
       setBlogPosts(posts);
+
     } catch (error) {
       console.error('Error fetching blog posts:', error);
     }
@@ -47,7 +58,8 @@ const Blogs = () => {
     <div>
       {blogPosts.length > 0 ? (
         blogPosts.map((post) => (
-          <BlogPost title={post.title} content={post.content} />
+
+          <BlogPost key={post.id} title={post.title} content={post.content} refcontent={post.refcontent}/>
         ))
       ) : (
         <div className="blog-post">No blog posts found.</div>
