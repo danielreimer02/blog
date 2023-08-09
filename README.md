@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Simple Blog
+### Can upload blogposts and references which are stored on site 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Pre-requisites
+ - npm
+ - github account 
+ - netfly account 
 
-## Available Scripts
+### Setup
+ - set up github ssh 
+ - open folder where want code stored
+ - run `git clone git@github.com:danielreimer02/blog.git`
 
-In the project directory, you can run:
+### Run Dev 
+To run locally 
+ - open code in vsCode 
+ - run `npm start` in vsCode terminal
+ - open http://localhost:3000 to view it in your browser.
+The page will reload when you make changes.
+ - To shutdown run `CTRL-C` in vsCode terminal
 
-### `npm start`
+### Run Prod
+To run on cloud
+- push to your personal github either make it public or give netfly permission to access it in settings
+- open netfly 
+- click add new site, import existing project
+- click deploy with github
+- select blog (or whatever you named the project)
+- click deploy blog 
+- then you can change the domain by clicking set up custom domain
+- now any blogs you add using ./addpost.py and then push to github will show up on netfly
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Add A Blog Post
+ - write a blog post in .md 
+ - write a references post in .md
+ - run ./addpost.py on command line to add a blog post and references
+ - push to github if you want (for cloud)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Delete A Blog Post
+ - uhhh working on it 
+ - if you're really desperate just delete that blogs folder in /public/data/ and save and push to github
 
-### `npm test`
+ ### Thought Process
+ - run ./addpost.py to add a blog post - it will take some local files and make sure they're formatted properly to store on site and then store them in the public/data/ folder of the site 
+    - I went with this pattern because it's super simple but for production would want some kubernetes and separate databases but the goal of this project was to learn some js and React and create something simple and usable
+ - the js components can retrieve the blog posts from public/data/ 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ ### Contact 
+ if you find bugs or like it feel free to email me or make a pull request :) 
+ daniel.reimer02@gmail.com
